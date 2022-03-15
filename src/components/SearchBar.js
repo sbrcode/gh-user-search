@@ -1,36 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 
-export default class SearchBar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchText: ''
-    };
-  }
+export default function SearchBar({ onSearch }) {
+  const [searchText, setSearchText] = useState('')
   
-  onSearchChange = e => {
-    this.setState({ searchText: e.target.value });
-  }
-  
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.query.value);
+    onSearch(searchText);
     e.currentTarget.reset();
   }
-  
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} >
-        <GiMagnifyingGlass size={25} color={'darkgrey'} style={{ marginInline: 10 }} />
-        <label htmlFor="search"/>
-        <input type="search" 
-               onChange={this.onSearchChange}
-               name="search" 
-               ref={(input) => this.query = input}
-               placeholder="Search"
-         />
-      </form>      
-    );
-  }
+
+  return (
+    <form onSubmit={handleSubmit} >
+    <GiMagnifyingGlass size={25} color={'darkgrey'} style={{ marginInline: 10 }} />
+    <label htmlFor="search"/>
+    <input type="search" 
+           onChange={(e) => setSearchText(e.target.value)}
+           name="search" 
+          //  ref={(input) => query = input}
+           placeholder="Search"
+     />
+  </form>   
+  )
 }
