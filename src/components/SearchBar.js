@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { GiMagnifyingGlass } from 'react-icons/gi';
 
 export default function SearchBar({ onSearch }) {
   const [searchText, setSearchText] = useState('')
@@ -12,13 +11,11 @@ export default function SearchBar({ onSearch }) {
 
   return (
     <form onSubmit={handleSubmit} >
-    <GiMagnifyingGlass size={25} color={'darkgrey'} style={{ marginInline: 10 }} />
     <label htmlFor="search"/>
     <input type="search" 
            onChange={(e) => setSearchText(e.target.value)}
            name="search" 
-          //  ref={(input) => query = input}
-           placeholder="Search"
+           placeholder="Search..."
      />
   </form>   
   )

@@ -1,12 +1,14 @@
 import React from 'react';
-import User from './User';
 
-export default function UsersList(props) {
-  let results = props.data;
-  if (results.length) {
-    let users = props.data.map(user => <User name={user.login} url={user.html_url} key={user.id} />);
-    return <ul>{users}</ul>
-  } else {
-    return <p>Sorry, this user name does not match within github</p>
-  }
+export default function UsersList({ users }) {
+
+  const usersList = users.map(user =>
+    <div key={user.id} style={{ backgroundColor: 'lightsteelblue' }}>
+      <a href={user.html_url} target="_BLANK" rel="noreferrer">{user.login} </a>
+    </div>
+  )
+
+  return (users.length)
+    ? <ul>{usersList}</ul>
+    : <p><i>no match or empty search</i></p>
 }
